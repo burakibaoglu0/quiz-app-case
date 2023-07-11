@@ -1,24 +1,60 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import './style.css';
+import { fetchQuestions } from './ts/api';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div class="container m-auto">
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+try {
+  const answers: Record<number, string>  = {
+    0: 'A',
+    1: 'B',
+    2: 'C',
+    3: 'D'
+  };
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+  let currentQuestionIndex = 0;
+
+  const mainContainer = document.querySelector('#app');
+  const questions = await fetchQuestions();
+
+  const questionContainer = document.createElement('div');
+  questionContainer.classList.add('question-container');
+
+  const renderQuestion = () => {
+    const question = questions ? questions[currentQuestionIndex] : null;
+    const optionsHTML = question?.options.map((option: string, index: number) => `
+      <li class="question-option">
+        <input readonly type="text" name="option-${answers[index]}" value="${answers[index]}" />
+        <label for="option-${answers[index]}">${option}</label>
+      </li>
+    `).join('');
+
+    questionContainer.innerHTML = `
+      <div class="questions-header">
+        <p>Question: ${currentQuestionIndex + 1} of ${questions?.length}</p>
+      </div>
+      <div class="questions-body">
+        <div class="question-card">
+          <p class="question-title">${currentQuestionIndex + 1}. ${question?.title}</p>
+          <ul class="question-options">${optionsHTML}</ul>
+        </div>
+        <button class="next-button">Next</button>
+      </div>
+    `;
+
+    questionContainer.querySelector('.next-button')?.addEventListener('click', handleClick);
+  }
+
+  const handleClick = () => {
+    if (currentQuestionIndex + 1 !== 10) {
+      currentQuestionIndex++;
+      renderQuestion();
+      console.log(currentQuestionIndex);
+    }
+  }
+
+  renderQuestion();
+
+  mainContainer?.appendChild(questionContainer);
+
+  console.log(questions);
+} catch (e) {
+  console.log(e);
+}
