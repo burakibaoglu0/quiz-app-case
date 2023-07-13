@@ -17,11 +17,11 @@ try {
   const questionContainer = document.createElement('div');
   questionContainer.classList.add('question-container');
 
-  const renderQuestion = () => {
+  const renderQuestion = ():void => {
     const question = questions ? questions[currentQuestionIndex] : null;
     const optionsHTML = question?.options.map((option: string, index: number) => `
       <li class="question-option">
-        <input readonly type="text" name="option-${answers[index]}" value="${answers[index]}" />
+        <input readonly type="text" id="option-${answers[index]}" name="option-${answers[index]}" value="${answers[index]}" />
         <label for="option-${answers[index]}">${option}</label>
       </li>
     `).join('');
@@ -39,22 +39,35 @@ try {
       </div>
     `;
 
+    questionContainer.querySelectorAll('.question-option')?.forEach(_option => {
+      _option.querySelector('input')?.addEventListener('click', setAnswer);
+    });
+
     questionContainer.querySelector('.next-button')?.addEventListener('click', handleClick);
   }
 
-  const handleClick = () => {
+  const setAnswer = (e : Event):void => {
+    const selectedOption = e.target as HTMLInputElement;
+    
+    selectedOption.checked ? selectedOption.removeAttribute('checked') : selectedOption.setAttribute('checked', 'checked');
+    
+    questionContainer.querySelectorAll('.question-option')?.forEach(_option => {
+      if (_option.querySelector('input')?.value !== selectedOption.value) {
+        _option.querySelector('input')?.removeAttribute('checked');
+      }
+    });
+  }
+
+  const handleClick = ():void => {
     if (currentQuestionIndex + 1 !== 10) {
       currentQuestionIndex++;
       renderQuestion();
-      console.log(currentQuestionIndex);
     }
   }
 
   renderQuestion();
 
   mainContainer?.appendChild(questionContainer);
-
-  console.log(questions);
 } catch (e) {
   console.log(e);
 }
