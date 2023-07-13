@@ -37,6 +37,10 @@ body, #app{
         .questions-body{
             @apply w-full h-full flex flex-[1_0_1px] flex-col overflow-auto px-8 py-4 gap-4 drop-shadow-lg shadow-gray-300 rounded bg-slate-200;
 
+            &.non-selectable{
+                pointer-events: none;
+            }
+
             .question-card{
                 @apply flex flex-col py-8 gap-4 items-center bg-slate-200 flex-[1_0_1px] w-[50%] m-auto;
 

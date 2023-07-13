@@ -2,6 +2,11 @@ import './style.scss';
 import { fetchQuestions } from './ts/api';
 
 try {
+  const questions = await fetchQuestions();
+
+  const questionContainer = document.createElement('div');
+  questionContainer.classList.add('question-container');
+
   const answers: Record<number, string>  = {
     0: 'A',
     1: 'B',
@@ -10,12 +15,6 @@ try {
   };
 
   let currentQuestionIndex = 0;
-
-  const mainContainer = document.querySelector('#app');
-  const questions = await fetchQuestions();
-
-  const questionContainer = document.createElement('div');
-  questionContainer.classList.add('question-container');
 
   const renderQuestion = ():void => {
     const question = questions ? questions[currentQuestionIndex] : null;
@@ -30,7 +29,7 @@ try {
       <div class="questions-header">
         <p>Question: ${currentQuestionIndex + 1} of ${questions?.length}</p>
       </div>
-      <div class="questions-body">
+      <div class="questions-body non-selectable">
         <div class="question-card">
           <p class="question-title">${currentQuestionIndex + 1}. ${question?.title}</p>
           <ul class="question-options">${optionsHTML}</ul>
@@ -60,13 +59,35 @@ try {
 
   const handleClick = ():void => {
     if (currentQuestionIndex + 1 !== 10) {
+      clearInterval(_timer!);
       currentQuestionIndex++;
+      createTimer();
       renderQuestion();
     }
   }
 
   renderQuestion();
 
+  let _timer: NodeJS.Timer | null = null;
+
+  const createTimer = () => {
+    let _duration = 30;
+
+    _timer = setInterval(() => {
+      if(_duration > 0){
+        let _durationText =  `00:${_duration < 10 ? `0${_duration}` : _duration}s`;
+        _duration--;
+
+        _duration <= 20 ? questionContainer.querySelector('.questions-body')?.classList.replace('non-selectable', 'selectable') : null;
+      }else{
+        clearInterval(_timer!);
+        handleClick();
+      }
+    }, 1000);
+  }
+  createTimer();
+
+  const mainContainer = document.querySelector('#app');
   mainContainer?.appendChild(questionContainer);
 } catch (e) {
   console.log(e);
