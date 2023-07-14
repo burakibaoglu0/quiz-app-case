@@ -10,3 +10,9 @@ export interface IQuestions {
     options: string[];
     answer: string;
 }
+
+export interface IState {
+    currentQuestionIndex: number,
+    timer: NodeJS.Timeout | null,
+    duration: number,
+}

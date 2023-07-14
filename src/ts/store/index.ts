@@ -1,21 +1,33 @@
+import { IState } from "../types";
+
 const store = {
     state: {
-        currentQuestionIndex: 0 as number
+        currentQuestionIndex: 0 as number,
+        timer: null as NodeJS.Timeout | null,
+        duration: 30 as number,
     },
     mutations: {
-        setCurrentQuestionIndex(state: {
-            currentQuestionIndex: number;
-        },payload: number) {
+        setCurrentQuestionIndex(state: IState ,payload: number) {
             state.currentQuestionIndex = payload;
+        },
+        setTimer(state: IState, payload: NodeJS.Timeout | null) {
+            state.timer = payload;
+        },
+        setDuration(state: IState, payload: number) {
+            state.duration = payload;
         }
     },
     actions: {
     },
     getters: {
-        getCurrentQuestionIndex(state: {
-            currentQuestionIndex: number;
-        }){
+        getCurrentQuestionIndex(state: IState){
             return state.currentQuestionIndex;
+        },
+        getTimer(state: IState){
+            return state.timer;
+        },
+        getDuration(state: IState){
+            return state.duration;
         }
     }
 }

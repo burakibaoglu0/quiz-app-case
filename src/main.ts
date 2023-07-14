@@ -61,7 +61,7 @@ try {
 
   const handleClick = (): void => {
     if (store.getters.getCurrentQuestionIndex(store.state) + 1 !== 10) {
-      clearInterval(_timer!);
+      clearInterval(store.getters.getTimer(store.state)!);
       store.mutations.setCurrentQuestionIndex(store.state, store.state.currentQuestionIndex + 1);
       createTimer();
       renderQuestion();
@@ -80,12 +80,10 @@ try {
     </svg>
   `;
 
-  let _timer: NodeJS.Timer | null = null;
-
   const createTimer = () => {
-    let _duration = 30;
+    let _duration = store.getters.getDuration(store.state);
 
-    _timer = setInterval(() => {
+    const _timer = setInterval(() => {
       timerContainer.classList.replace('selectable', 'non-selectable');
       if (_duration > 0) {
         let _durationText = `00:${_duration < 10 ? `0${_duration}` : _duration}s`;
@@ -108,6 +106,8 @@ try {
         handleClick();
       }
     }, 1000);
+
+    store.mutations.setTimer(store.state,_timer);
   }
   createTimer();
 
