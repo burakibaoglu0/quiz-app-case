@@ -1,7 +1,7 @@
 import './style.scss';
 import {
   fetchQuestions
-} from './ts/api';
+} from './ts/api/fetchOperations';
 import store from './ts/store';
 
 

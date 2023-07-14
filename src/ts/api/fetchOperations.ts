@@ -1,8 +1,8 @@
-import urlConfig from './config';
+import urlConfig from '../config';
 import {
     IResponse,
     IQuestions
-} from './types';
+} from '../types';
 
 const answers = ['A', 'B', 'C', 'D'];
 const randomAnswer = (): string => {
@@ -15,7 +15,16 @@ export const fetchQuestions = async (): Promise < IQuestions[] | null > => {
     if (questions) return questions;
 
     try {
-        const response = await fetch(urlConfig.BASE_URL);
+        const controller = new AbortController();
+        const signal = controller.signal;
+
+        const _timeout = setTimeout(() => {
+            controller.abort();
+          }, 5000);
+
+        const response = await fetch(urlConfig.BASE_URL,{ signal });
+        clearTimeout(_timeout);
+
         const data: IResponse[] = await response.json();
         questions = data.map((question: IResponse) => ({
             title: question.title,
