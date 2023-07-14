@@ -1,5 +1,9 @@
 import './style.scss';
-import { fetchQuestions } from './ts/api';
+import {
+  fetchQuestions
+} from './ts/api';
+import store from './ts/store';
+
 
 try {
   const questions = await fetchQuestions();
@@ -7,17 +11,15 @@ try {
   const questionContainer = document.createElement('div');
   questionContainer.classList.add('question-container');
 
-  const answers: Record<number, string>  = {
+  const answers: Record < number, string > = {
     0: 'A',
     1: 'B',
     2: 'C',
     3: 'D'
   };
 
-  let currentQuestionIndex = 0;
-
-  const renderQuestion = ():void => {
-    const question = questions ? questions[currentQuestionIndex] : null;
+  const renderQuestion = (): void => {
+    const question = questions ? questions[store.getters.getCurrentQuestionIndex(store.state)] : null;
     const optionsHTML = question?.options.map((option: string, index: number) => `
       <li class="question-option">
         <input readonly type="text" id="option-${answers[index]}" name="option-${answers[index]}" value="${answers[index]}" />
@@ -27,11 +29,11 @@ try {
 
     questionContainer.innerHTML = `
       <div class="questions-header">
-        <p>Question: ${currentQuestionIndex + 1} of ${questions?.length}</p>
+        <p>Question: ${store.getters.getCurrentQuestionIndex(store.state) + 1} of ${questions?.length}</p>
       </div>
       <div class="questions-body non-selectable">
         <div class="question-card">
-          <p class="question-title">${currentQuestionIndex + 1}. ${question?.title}</p>
+          <p class="question-title">${store.getters.getCurrentQuestionIndex(store.state) + 1}. ${question?.title}</p>
           <ul class="question-options">${optionsHTML}</ul>
         </div>
         <button class="next-button">Next</button>
@@ -45,31 +47,31 @@ try {
     questionContainer.querySelector('.next-button')?.addEventListener('click', handleClick);
   }
 
-  const setAnswer = (e : Event):void => {
+  const setAnswer = (e: Event): void => {
     const selectedOption = e.target as HTMLInputElement;
-    
+
     selectedOption.checked ? selectedOption.removeAttribute('checked') : selectedOption.setAttribute('checked', 'checked');
-    
+
     questionContainer.querySelectorAll('.question-option')?.forEach(_option => {
       if (_option.querySelector('input')?.value !== selectedOption.value) {
         _option.querySelector('input')?.removeAttribute('checked');
       }
     });
-  }
+  };
 
-  const handleClick = ():void => {
-    if (currentQuestionIndex + 1 !== 10) {
+  const handleClick = (): void => {
+    if (store.getters.getCurrentQuestionIndex(store.state) + 1 !== 10) {
       clearInterval(_timer!);
-      currentQuestionIndex++;
+      store.mutations.setCurrentQuestionIndex(store.state, store.state.currentQuestionIndex + 1);
       createTimer();
       renderQuestion();
     }
-  }
+  };
 
   renderQuestion();
 
   const timerContainer = document.createElement('div');
-  timerContainer.classList.add('timer-container','non-selectable');
+  timerContainer.classList.add('timer-container', 'non-selectable');
 
   timerContainer.innerHTML = `
     <svg height="200" width="200">
@@ -85,8 +87,8 @@ try {
 
     _timer = setInterval(() => {
       timerContainer.classList.replace('selectable', 'non-selectable');
-      if(_duration > 0){
-        let _durationText =  `00:${_duration < 10 ? `0${_duration}` : _duration}s`;
+      if (_duration > 0) {
+        let _durationText = `00:${_duration < 10 ? `0${_duration}` : _duration}s`;
         (timerContainer.querySelector('svg text') as HTMLElement).innerHTML = _durationText;
         timerContainer.querySelector('svg circle')?.setAttribute('stroke-dasharray', `${_duration * 3.6} ${_duration * 3.6}`);
         timerContainer.querySelector('svg circle')?.setAttribute('stroke-dashoffset', `${_duration * 3.6}`);
@@ -94,20 +96,19 @@ try {
 
         _duration--;
 
-        if(_duration <= 20){
+        if (_duration <= 20) {
           questionContainer.querySelector('.questions-body')?.classList.replace('non-selectable', 'selectable');
           timerContainer.classList.replace('non-selectable', 'selectable');
           timerContainer.querySelector('svg circle')?.setAttribute('stroke-width', '1');
         }
-      }else{
-        let _durationText =  `00:${_duration < 10 ? `0${_duration}` : _duration}s`;
+      } else {
+        let _durationText = `00:${_duration < 10 ? `0${_duration}` : _duration}s`;
         (timerContainer.querySelector('svg text') as HTMLElement).innerHTML = _durationText;
         timerContainer.classList.replace('selectable', 'non-selectable');
         handleClick();
       }
     }, 1000);
   }
-
   createTimer();
 
   const mainContainer = document.querySelector('#app');
