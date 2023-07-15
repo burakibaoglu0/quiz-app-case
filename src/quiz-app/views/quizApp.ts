@@ -1,7 +1,7 @@
 import '../styles/index.scss';
 import questionCard from '../components/questionCard/questionCard';
 import createTimer from '../components/timer/timer';
-import changeWindowHistory from '../helpers/utils';
+import { changeWindowHistory } from '../helpers/utils';
 
 const initQuizApp = () => {
     try {

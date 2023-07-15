@@ -24,7 +24,7 @@
             @apply flex flex-col py-8 gap-4 items-center bg-slate-200 flex-[1_0_1px] w-[50%] m-auto;
 
             .question-title{
-                @apply w-full font-medium text-left capitalize;
+                @apply w-full font-medium text-left;
             }
 
             .question-options{

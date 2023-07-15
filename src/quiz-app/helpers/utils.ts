@@ -1,4 +1,4 @@
-const changeWindowHistory = (currentQuestionIndex?: number) => {
+export const changeWindowHistory = (currentQuestionIndex?: number) => {
     currentQuestionIndex ? currentQuestionIndex : currentQuestionIndex = 0;
 
     if(currentQuestionIndex < 10){
@@ -10,4 +10,6 @@ const changeWindowHistory = (currentQuestionIndex?: number) => {
     }
 }
 
-export default changeWindowHistory;
+export const capitalizeFirstLetter = (str: string) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}

@@ -1,19 +1,16 @@
 import './questionCard.scss';
 import store from '../../store';
 import { setAnswer , handleClick } from '../../helpers/eventHandlers';
+import { capitalizeFirstLetter } from '../../helpers/utils';
 
 if(!store.getters.getQuestions(store.state).length){
     await store.actions.fetchQuestionsAction();
 }
 
-store.actions.currentQuestionAction(store.state);
-
-const questions = store.getters.getQuestions(store.state);
-const currentQuestion = store.getters.getCurrentQuestion(store.state);
-
 const questionContainer = document.createElement('div');
 questionContainer.classList.add('question-container');
 
+const questions = store.getters.getQuestions(store.state);
 const answers: Record < number, string > = {
     0: 'A',
     1: 'B',
@@ -22,10 +19,13 @@ const answers: Record < number, string > = {
   };
 
 const questionCard = () => {
+  store.actions.currentQuestionAction(store.state);
+  const currentQuestion = store.getters.getCurrentQuestion(store.state);
+
     const optionsHTML = currentQuestion?.options.map((option: string, index: number) => `
     <li class="question-option">
       <input readonly type="text" id="option-${answers[index]}" name="option-${answers[index]}" value="${answers[index]}" />
-      <label for="option-${answers[index]}">${option}</label>
+      <label for="option-${answers[index]}">${capitalizeFirstLetter(option)}</label>
     </li>
   `).join('');
 
@@ -35,7 +35,7 @@ const questionCard = () => {
     </div>
     <div class="questions-body non-selectable">
       <div class="question-card">
-        <p class="question-title">${store.getters.getCurrentQuestionIndex(store.state) + 1}. ${currentQuestion?.title}</p>
+        <p class="question-title">${store.getters.getCurrentQuestionIndex(store.state) + 1}. ${capitalizeFirstLetter(currentQuestion?.title || '')}</p>
         <ul class="question-options">${optionsHTML}</ul>
       </div>
       <button class="next-button">${store.getters.getCurrentQuestionIndex(store.state) + 1 !== 10 ? 'Next' : 'Finish'}</button>
