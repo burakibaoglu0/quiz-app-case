@@ -1,0 +1,15 @@
+.user-selections-table{
+    @apply table table-auto border-collapse border-2 bg-slate-200 border-slate-400 border-spacing-4;
+
+    thead th{
+        @apply border-2 border-slate-500 text-center;
+    }
+
+    tbody td{
+        @apply border-2 border-slate-600 text-center;
+    }
+
+    th, td{
+        @apply py-2 px-4;
+    }
+}

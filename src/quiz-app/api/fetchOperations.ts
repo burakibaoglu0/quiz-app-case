@@ -1,7 +1,7 @@
 import urlConfig from '../helpers/config';
 import {
     IResponse,
-    IQuestions
+    IQuestion
 } from '../helpers/types';
 
 const answers = ['A', 'B', 'C', 'D'];
@@ -9,9 +9,9 @@ const randomAnswer = (): string => {
     return answers[Math.floor(Math.random() * answers.length)];
 };
 
-let questions: IQuestions[] | null = null;
+let questions: IQuestion[] | null = null;
 
-export const fetchQuestions = async (): Promise < IQuestions[] | null > => {
+export const fetchQuestions = async (): Promise < IQuestion[] | null > => {
     if (questions) return questions;
 
     try {

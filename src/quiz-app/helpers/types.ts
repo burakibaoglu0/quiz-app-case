@@ -1,19 +1,23 @@
-export interface IResponse {
+interface IResponse {
     userId: number;
     id: number;
     title: string;
     body: string;
 }
 
-export interface IQuestions {
+interface IQuestion {
     title: string;
     options: string[];
     answer: string;
 }
 
-export interface IState {
+interface IState {
     currentQuestionIndex: number,
+    questions: IQuestion[],
+    currentQuestion: IQuestion | null,
     timer: NodeJS.Timeout | null,
     duration: number,
     userSelections: string[]
 }
+
+export type { IResponse, IQuestion, IState };
