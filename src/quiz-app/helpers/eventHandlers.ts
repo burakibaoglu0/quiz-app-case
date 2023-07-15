@@ -2,6 +2,7 @@ import questionCard from "../components/questionCard/questionCard";
 import renderUserSelectionsTable from "../components/selectionTable/selectionTable";
 import timer from "../components/timer/timer";
 import store from "../store";
+import changeWindowHistory from "./utils";
 
 const setAnswer = (e: Event): void => {
     const selectedOption = e.target as HTMLInputElement;
@@ -34,6 +35,8 @@ const handleClick = (): void => {
       store.mutations.setCurrentQuestionIndex(store.state, 10);
       renderUserSelectionsTable();
     }
+    
+    changeWindowHistory(store.getters.getCurrentQuestionIndex(store.state));
 };
 
 
