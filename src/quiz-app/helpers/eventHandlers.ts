@@ -1,6 +1,6 @@
 import questionCard from "../components/questionCard/questionCard";
 import renderUserSelectionsTable from "../components/selectionTable/selectionTable";
-import timer from "../components/timer/timer";
+import createTimer from "../components/timer/timer";
 import store from "../store";
 import changeWindowHistory from "./utils";
 
@@ -29,7 +29,7 @@ const handleClick = (): void => {
 
     if (store.getters.getCurrentQuestionIndex(store.state) + 1 !== 10) {
       store.mutations.setCurrentQuestionIndex(store.state, store.state.currentQuestionIndex + 1);
-      timer();
+      createTimer();
       questionCard();
     }else{
       store.mutations.setCurrentQuestionIndex(store.state, 10);
