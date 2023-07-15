@@ -1,0 +1,38 @@
+.home-page-content{
+    @apply w-full h-full flex items-center justify-center overflow-hidden;
+    
+    .home-page-content-left, .home-page-content-right{
+        @apply flex-[1] h-[calc(100%_+_3rem)] overflow-hidden rotate-3 -translate-x-6;
+
+        .home-page-content-button{
+            @apply absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] p-[1rem] -rotate-3  bg-gray-800 z-10  rounded w-60 text-center border-2 border-solid border-gray-800 transition-all backdrop-blur-lg cursor-pointer;
+
+            .home-page-content-title{
+                @apply text-slate-100 font-medium;
+            }
+
+            &:hover{
+                @apply bg-transparent ;
+
+                .home-page-content-title{
+                    @apply text-gray-800;
+                }
+
+            }
+        }
+
+        &:hover{
+            img{
+                @apply grayscale-0 opacity-100 blur-none scale-105;
+            }
+        }
+    }
+
+    .home-page-content-right{
+        @apply translate-x-[0] scale-x-105 border-4 border-solid border-l-gray-800;
+    }
+
+    img{
+        @apply pointer-events-none w-full h-full object-cover blur opacity-95 filter grayscale transition-all ease-in duration-300 overflow-hidden;
+    }
+}

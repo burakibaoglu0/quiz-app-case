@@ -1,6 +1,6 @@
 @import "./mixins.scss";
 
-#app{
+#app.quiz-app{
     @apply container m-auto gap-4;
     @include flex-center;
 }

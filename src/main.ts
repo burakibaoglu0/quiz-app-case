@@ -1,4 +1,6 @@
 import "./style.scss";
-import initQuizApp from "./quiz-app/views/quizApp";
+import homePage from "./views/homePage";
 
-initQuizApp();
+const appContainer = document.querySelector("#app");
+
+appContainer?.appendChild(homePage());

@@ -16,7 +16,7 @@ const updateTimerCircle = (timerContainer: HTMLDivElement) => {
       timerContainer.classList.replace('non-selectable', 'selectable');
     }
   }catch(err){
-    console.log('upodateTimerCircle error: ' + err);
+    console.log('updateTimerCircle error: ' + err);
   }
 };
 

@@ -8,6 +8,7 @@ const initQuizApp = () => {
       changeWindowHistory();
 
       const mainContainer = document.querySelector('#app');
+      mainContainer?.classList.add('quiz-app');
       mainContainer?.appendChild(questionCard());
       mainContainer?.appendChild(createTimer());
     } catch (e) {
