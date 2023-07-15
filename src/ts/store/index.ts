@@ -5,6 +5,7 @@ const store = {
         currentQuestionIndex: 0 as number,
         timer: null as NodeJS.Timeout | null,
         duration: 30 as number,
+        userSelections: [] as string[],
     },
     mutations: {
         setCurrentQuestionIndex(state: IState ,payload: number) {
@@ -15,9 +16,13 @@ const store = {
         },
         setDuration(state: IState, payload: number) {
             state.duration = payload;
+        },
+        setUserSelections(state: IState, payload: string) {
+            state.userSelections.push(payload);
         }
     },
     actions: {
+        
     },
     getters: {
         getCurrentQuestionIndex(state: IState){
@@ -28,6 +33,9 @@ const store = {
         },
         getDuration(state: IState){
             return state.duration;
+        },
+        getUserSelections(state: IState){
+            return state.userSelections;
         }
     }
 }

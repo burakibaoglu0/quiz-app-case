@@ -15,4 +15,5 @@ export interface IState {
     currentQuestionIndex: number,
     timer: NodeJS.Timeout | null,
     duration: number,
+    userSelections: string[]
 }

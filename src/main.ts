@@ -7,6 +7,7 @@ import store from './ts/store';
 
 try {
   const questions = await fetchQuestions();
+  const mainContainer = document.querySelector('#app');
 
   const questionContainer = document.createElement('div');
   questionContainer.classList.add('question-container');
@@ -36,7 +37,7 @@ try {
           <p class="question-title">${store.getters.getCurrentQuestionIndex(store.state) + 1}. ${question?.title}</p>
           <ul class="question-options">${optionsHTML}</ul>
         </div>
-        <button class="next-button">Next</button>
+        <button class="next-button">${store.getters.getCurrentQuestionIndex(store.state) + 1 !== 10 ? 'Next' : 'Finish'}</button>
       </div>
     `;
 
@@ -45,6 +46,33 @@ try {
     });
 
     questionContainer.querySelector('.next-button')?.addEventListener('click', handleClick);
+  }
+
+  const renderUserSelectionsTable = () => {
+    const table = document.createElement('table');
+    const userSelections = store.getters.getUserSelections(store.state);
+
+    table.classList.add('user-selections-table');
+    table.innerHTML = `
+    <thead>
+      <tr>
+        <th>Question</th>
+        <th>Answer</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${userSelections.map((selection, index) => `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${selection}</td>
+        </tr>
+      `).join('')}
+    </tbody>
+        `
+
+        questionContainer.classList.add('!hidden');
+        mainContainer?.querySelector('.timer-container')?.classList.add('!hidden');
+        mainContainer?.appendChild(table);
   }
 
   const setAnswer = (e: Event): void => {
@@ -60,17 +88,25 @@ try {
   };
 
   const handleClick = (): void => {
+    clearInterval(store.getters.getTimer(store.state)!);
+    const selectedInput = questionContainer.querySelector('input[checked]') as HTMLInputElement;
+    const userAnswer = selectedInput ? selectedInput.value : '-';
+    store.mutations.setUserSelections(store.state, userAnswer);
+
     if (store.getters.getCurrentQuestionIndex(store.state) + 1 !== 10) {
-      clearInterval(store.getters.getTimer(store.state)!);
       store.mutations.setCurrentQuestionIndex(store.state, store.state.currentQuestionIndex + 1);
       createTimer();
       renderQuestion();
+    }else{
+      store.mutations.setCurrentQuestionIndex(store.state, 10);
+      renderUserSelectionsTable();
     }
   };
 
   renderQuestion();
 
   const timerContainer = document.createElement('div');
+  timerContainer.classList.add('timer-container');
   timerContainer.classList.add('timer-container', 'non-selectable');
 
   timerContainer.innerHTML = `
@@ -111,7 +147,6 @@ try {
   }
   createTimer();
 
-  const mainContainer = document.querySelector('#app');
   mainContainer?.appendChild(questionContainer);
   mainContainer?.appendChild(timerContainer);
 } catch (e) {
