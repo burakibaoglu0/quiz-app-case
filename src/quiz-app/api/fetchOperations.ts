@@ -1,8 +1,8 @@
-import urlConfig from '../config';
+import urlConfig from '../helpers/config';
 import {
     IResponse,
     IQuestions
-} from '../types';
+} from '../helpers/types';
 
 const answers = ['A', 'B', 'C', 'D'];
 const randomAnswer = (): string => {

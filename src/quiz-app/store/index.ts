@@ -1,4 +1,4 @@
-import { IState } from "../types";
+import { IState } from "../helpers/types";
 
 const store = {
     state: {
