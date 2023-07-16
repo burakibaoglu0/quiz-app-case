@@ -36,11 +36,12 @@ export const createStarterPopup = (homePageContainer: HTMLDivElement) => {
     
     document.body.classList.add('pointer-events-none');
     starterPopup.querySelector('.quiz-starter-popup-close-button')?.addEventListener('click', () => {
-        starterPopup.remove();
         document.body.classList.remove('pointer-events-none');
+        starterPopup.remove();
     });
 
     starterPopup.querySelector('.quiz-starter-button')?.addEventListener('click', () => {
+        document.body.classList.remove('pointer-events-none');
         starterPopup.remove();
         homePageContainer.remove();
         initQuizApp();
