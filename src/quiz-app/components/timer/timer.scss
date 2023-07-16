@@ -1,15 +1,29 @@
 @import '../../styles/mixins.scss';
 
 .timer-container{
-    @apply h-[50%] flex-col flex-[0_0_15%];
+    @apply h-[60%] flex-col flex-[0_0_15%] bg-slate-50 rounded-sm shadow-xl;
     @include flex-center;
 
     circle{
         @apply fill-slate-100 transition-all duration-1000;
+
+        @media only screen and (max-width: 1299px) {
+            @apply hidden;
+        }
     }
 
     text{
         @apply font-medium text-lg;
+
+        @media only screen and (max-width: 1299px) {
+            @apply -translate-x-[3rem] -translate-y-[3rem];
+        }
+    }
+
+    svg{
+        @media only screen and (max-width: 1299px) {
+            @apply w-[100px] h-[100px];
+        }
     }
 
     &.non-selectable{
@@ -22,5 +36,17 @@
         circle{
             @apply stroke-green-600;
         }
+    }
+
+    @media only screen and (max-width: 1299px) {
+        @apply absolute flex-[0_0_auto] w-auto h-auto bg-transparent shadow-none top-[8rem] right-[4rem];
+    }
+
+    @media only screen and (max-width: 768px) {
+        @apply top-[6rem] right-[2rem];
+    }
+
+    @media only screen and (max-width: 425px) {
+        @apply top-[1rem] right-[2rem];
     }
 }

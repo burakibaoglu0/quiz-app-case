@@ -1,6 +1,14 @@
 @import "./mixins.scss";
 
 #app.quiz-app{
-    @apply p-20 gap-4 select-none bg-slate-100;
+    @apply p-20 gap-10 select-none bg-slate-100 relative;
     @include flex-center;
+
+    @media only screen and (max-width: 1299px) {
+        @apply flex-col p-16;
+    }
+
+    @media only screen and (max-width: 768px) {
+        @apply p-8;
+    }
 }
