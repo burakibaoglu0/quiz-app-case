@@ -1,0 +1,59 @@
+.main-sneaker {
+    @apply flex p-20 items-center gap-20 self-stretch;
+
+    .main-sneaker-right {
+        @apply flex flex-col items-start gap-12 flex-[1_0_0];
+
+        h1 {
+            @apply self-stretch text-gray-900 text-7xl font-[800] leading-[110%];
+        }
+
+        p {
+            @apply self-stretch text-lg font-normal leading-[160%];
+        }
+
+        .main-sneaker-right-buttons {
+            @apply flex gap-4 items-center;
+
+            .bordered {
+                @apply flex p-4 items-center justify-center border-2 border-solid border-amber-900 rounded-lg;
+
+                a {
+                    @apply flex py-0 px-4 items-center justify-center;
+
+                    span {
+                        @apply text-amber-900 text-xl leading-6 tracking-[.5px] font-medium;
+                    }
+                }
+            }
+
+            button:not(.bordered) {
+                @apply flex px-2 py-3 justify-center items-center;
+
+                svg {
+                    @apply fill-amber-900;
+                }
+
+                a {
+                    @apply flex py-0 px-2 items-center justify-center;
+
+                    span {
+                        @apply text-amber-900 text-base font-medium leading-6 tracking-[.5px];
+                    }
+                }
+            }
+        }
+    }
+
+    .main-sneaker-left {
+        @apply w-[486px] h-[423px] relative;
+
+        picture {
+            @apply absolute left-[51px] bottom-0 flex w-[367px] h-[372px] items-center justify-center gap-[10px] shrink-0 rounded-[50px] bg-amber-400;
+
+            img {
+                @apply w-[486px] h-[388px] shrink-0 absolute bottom-[35px];
+            }
+        }
+    }
+}

@@ -1,5 +1,6 @@
 import '../assets/styles/index.scss';
 import Header from '../components/header/header';
+import mainSneaker from '../components/mainSneaker/mainSneaker';
 
 const initLandingPage = () => {
   document.title = document.title.split(' | ')[0]  + ' | ' + 'Landing Page';
@@ -9,6 +10,7 @@ const initLandingPage = () => {
   mainContainer?.classList.add('landing-page');
 
   mainContainer?.appendChild(Header());
+  mainContainer?.appendChild(mainSneaker());
 };
 
 export default initLandingPage;

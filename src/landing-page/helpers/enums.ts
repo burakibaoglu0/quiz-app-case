@@ -4,7 +4,7 @@ export const headerItems: IHeaderItem[] = [
     {
         text: 'Collers',
         pos: 'left',
-        path: '/'
+        path: '/landing-page'
     },
     {
         text: 'Products',
