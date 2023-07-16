@@ -41,7 +41,7 @@ Use the code below to run the project in your local environment
 **Client:** HTML, SASS, TypeScript, Tailwind
 
 **Module Bundler:** Vite
-## Ekran Görüntüleri
+## Screenshots
 
 ![Home Page - Desktop](https://raw.githubusercontent.com/burakibaoglu0/baykar-case-study/main/src/assets/images/HP-Desktop.png?token=GHSAT0AAAAAACE4L5K56W4IKXHDU7VHO3V6ZFUBQKQ)
 
