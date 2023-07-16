@@ -19,6 +19,10 @@
                 }
 
             }
+
+            @media only screen and (max-width: 1024px) {
+                @apply rotate-0;
+            }
         }
 
         &:hover{
@@ -26,13 +30,25 @@
                 @apply grayscale-0 opacity-100 blur-none scale-105;
             }
         }
+
+        @media only screen and (max-width: 1024px) {
+            @apply flex-1 w-full h-full rotate-0 translate-x-0;
+        }
     }
 
     .home-page-content-right{
         @apply translate-x-[0] scale-x-105 border-4 border-solid border-l-gray-800;
+
+        @media only screen and (max-width: 1024px) {
+            @apply border-l-0 border-t-gray-800 h-full;
+        }
     }
 
     img{
         @apply pointer-events-none w-full h-full object-cover blur opacity-95 filter grayscale transition-all ease-in duration-300 overflow-hidden;
+    }
+
+    @media only screen and (max-width: 1024px) {
+        @apply flex-col;
     }
 }
