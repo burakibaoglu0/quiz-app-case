@@ -43,9 +43,9 @@ Use the code below to run the project in your local environment
 **Module Bundler:** Vite
 ## Ekran Görüntüleri
 
-![Home Page - Desktop](https://prnt.sc/gy3pUkoPrU5d)
+![Home Page - Desktop](https://raw.githubusercontent.com/burakibaoglu0/baykar-case-study/main/src/assets/images/HP-Desktop.png?token=GHSAT0AAAAAACE4L5K56W4IKXHDU7VHO3V6ZFUBQKQ)
 
-![Home Page - Mobile](https://prnt.sc/ink1npE1mYAE)
+![Home Page - Mobile](https://raw.githubusercontent.com/burakibaoglu0/baykar-case-study/main/src/assets/images/HP-Mobile.png?token=GHSAT0AAAAAACE4L5K4FNTTQC7EL23CECC4ZFUBQJA)
 ## Feedback
 
 If you have any feedback, please contact me at b.ibaoglu@gmail.com.
