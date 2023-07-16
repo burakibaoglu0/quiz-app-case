@@ -1,15 +1,40 @@
-.user-selections-table{
-    @apply table table-auto border-collapse border-2 bg-slate-200 border-slate-400 border-spacing-4;
+.summary-container {
+    @apply flex flex-col w-full h-full bg-slate-200 shadow-lg rounded-md p-10;
 
-    thead th{
-        @apply border-2 border-slate-500 text-center;
-    }
+    .user-selections-table-container {
+        @apply flex flex-1 flex-col;
 
-    tbody td{
-        @apply border-2 border-slate-600 text-center;
-    }
+        .summary-title{
+            @apply flex-[0_0_15%] flex items-center justify-center;
+        }
 
-    th, td{
-        @apply py-2 px-4;
+        .summary-title h2 {
+            @apply font-bold text-xl;
+        }
+
+        .summary-container-buttons {
+            @apply flex items-center justify-end flex-[0_0_15%];;
+
+            #back-button{
+                @apply bg-slate-900 text-white w-36 h-12 rounded-md;
+            }
+        }
+
+        .user-selections-table {
+            @apply flex-[0_0_70%] table table-auto border-collapse border-2 border-slate-400 border-spacing-4;
+
+            thead th {
+                @apply border-2 border-slate-500 text-center;
+            }
+
+            tbody td {
+                @apply border-2 border-slate-600 text-center;
+            }
+
+            th,
+            td {
+                @apply py-2 px-4;
+            }
+        }
     }
 }
