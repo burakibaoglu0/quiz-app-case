@@ -2,12 +2,15 @@ import './homePage.scss';
 import LandingPageImage from '../assets/images/Landing-Page.png';
 import QuizAppImage from '../assets/images/Quiz-App.png';
 import { createStarterPopup } from '../quiz-app/components/starterPopup/starterPopup';
+import initLandingPage from '../landing-page/views/landingPage';
 
 const homePage = () => {
     window.history.pushState('','Home Page','/')
 
     const homePageContainer = document.createElement('div');
     homePageContainer.classList.add('home-page-content');
+
+    //TODO Remove duplicate definations
 
     homePageContainer.innerHTML = `
         <div class="home-page-content-left">
@@ -31,7 +34,8 @@ const homePage = () => {
             if(actionType === 'quiz-app'){
                 homePageContainer.appendChild(createStarterPopup(homePageContainer));
             }else if(actionType === 'landing-page'){
-                //initLandingPage(); //TODO Create Landing Page
+                homePageContainer.remove();
+                initLandingPage();
             }
         })});
 
