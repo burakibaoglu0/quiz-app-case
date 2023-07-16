@@ -26,9 +26,9 @@ const mainSneaker = () => {
             </div>
         </div>
         <div class="main-sneaker-left">
-            <picture>
-                <img src="${PexelsPhotobyRayPiedra}" alt="Pexels Photo by Ray Piedra">
-            </picture>
+            <div class="picture-card">
+            </div>
+            <img src="${PexelsPhotobyRayPiedra}" alt="Pexels Photo by Ray Piedra">
         </div>
     `;
 

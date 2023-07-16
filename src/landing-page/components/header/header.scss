@@ -1,5 +1,5 @@
 .header{
-    @apply flex items-center self-center justify-between p-[24px_80px];
+    @apply relative z-10 flex items-center self-center justify-between p-[24px_80px];
 
     .header-left{
         .header-item-text{
