@@ -2,10 +2,10 @@
     @apply w-full h-full flex items-center justify-center overflow-hidden;
     
     .home-page-content-left, .home-page-content-right{
-        @apply flex-[1] h-[calc(100%_+_3rem)] overflow-hidden rotate-3 -translate-x-6;
+        @apply flex-auto w-[50%] h-[calc(100%_+_3rem)] overflow-hidden rotate-3 -translate-x-6;
 
         .home-page-content-button{
-            @apply absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] p-[1rem] -rotate-3  bg-gray-800 z-10  rounded w-60 text-center border-2 border-solid border-gray-800 transition-all backdrop-blur-lg cursor-pointer;
+            @apply absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] p-[1rem] -rotate-3  bg-gray-800 z-10  rounded w-60 text-center border-2 border-solid border-gray-800 transition-all backdrop-blur-lg cursor-pointer outline-none;
 
             .home-page-content-title{
                 @apply text-slate-100 font-medium;

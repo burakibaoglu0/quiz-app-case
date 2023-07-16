@@ -1,0 +1,41 @@
+.quiz-starter-popup{
+    @apply absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] flex flex-col gap-4 bg-white shadow-md p-6 rounded z-10 pointer-events-auto;
+
+    .quiz-starter-popup-header{
+        @apply flex items-center justify-between font-medium uppercase;
+
+        .quiz-starter-popup-title{
+            @apply leading-[1.5rem];
+        }
+
+        .quiz-starter-popup-close-button{
+            @apply flex items-center justify-center after:content-['\00d7'] after:text-black after:font-medium w-[1.5rem] h-[1.5rem] rounded-[50%] shadow-sm  cursor-pointer shadow-gray-500 bg-white;
+        }
+    }
+
+    .quiz-starter-popup-body{
+        .quiz-starter-popup-info-list{
+            @apply flex flex-col;
+
+            .quiz-starter-popup-info-item{
+                @apply before:content-[''] before:w-2 before:h-2 before:bg-black before:inline-block before:rounded-[50%] before:mr-2 leading-relaxed;
+
+                &:nth-child(3) , &:nth-child(4){
+                    @apply text-red-500 font-medium;
+                }
+            }
+        }
+    }
+
+    .quiz-starter-popup-footer{
+        @apply flex items-center justify-end;
+
+        .quiz-starter-button{
+            @apply px-2 py-1 bg-gray-800 rounded text-center border-2 border-solid border-gray-800 transition-all backdrop-blur-lg cursor-pointer outline-none;
+
+            span{
+                @apply text-slate-100 font-medium;
+            }
+        }
+    }
+}
