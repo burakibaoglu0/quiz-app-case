@@ -3,14 +3,9 @@ import store from '../../store';
 import { setAnswer , handleClick } from '../../helpers/eventHandlers';
 import { capitalizeFirstLetter } from '../../helpers/utils';
 
-async function starterMethod() {
-  if (!store.getters.getQuestions(store.state).length) {
-    await store.actions.fetchQuestionsAction();
-  }
+if (!store.getters.getQuestions(store.state).length) {
+  await store.actions.fetchQuestionsAction();
 }
-
-starterMethod();
-
 const questionContainer = document.createElement('div');
 questionContainer.classList.add('question-container');
 
