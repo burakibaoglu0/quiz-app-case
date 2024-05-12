@@ -16,7 +16,6 @@ export const createStarterPopup = (homePageContainer: HTMLDivElement) => {
     starterPopup.innerHTML = `
         <div class="quiz-starter-popup-header">
           <h2 class="quiz-starter-popup-title"> Information about the quiz </h2>
-          <span class="quiz-starter-popup-close-button"></span>
         </div>
         <div class="quiz-starter-popup-body">
           <ul class="quiz-starter-popup-info-list">
@@ -35,10 +34,6 @@ export const createStarterPopup = (homePageContainer: HTMLDivElement) => {
     `;
     
     document.body.classList.add('pointer-events-none');
-    starterPopup.querySelector('.quiz-starter-popup-close-button')?.addEventListener('click', () => {
-        document.body.classList.remove('pointer-events-none');
-        starterPopup.remove();
-    });
 
     starterPopup.querySelector('.quiz-starter-button')?.addEventListener('click', () => {
         document.body.classList.remove('pointer-events-none');

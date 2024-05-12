@@ -29,7 +29,7 @@ const renderUserSelectionsTable = () => {
             </tbody>
           </table>
           <div class="summary-container-buttons">
-            <button class="summary-container-button" id="back-button"   onclick="window.location.reload()">Back</button">
+            <button class="summary-container-button" id="back-button"   onclick="window.location = 'https://baykar-case-study.vercel.app/'">Back</button">
           </div>
         </div>
     `;

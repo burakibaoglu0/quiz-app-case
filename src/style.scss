@@ -3,18 +3,19 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Roboto';
-    src: url("./assets/fonts/Roboto/Roboto-Regular.ttf");
-  }
-
-*{
-    font-family: 'Roboto', sans-serif;
+  font-family: "Roboto";
+  src: url("./assets/fonts/Roboto/Roboto-Regular.ttf");
 }
 
-html{
-    @apply w-full h-[100vh] font-sans;
+* {
+  font-family: "Roboto", sans-serif;
 }
 
-body, #app{
-    @apply w-full h-full;
+html {
+  @apply w-full h-[100vh] font-sans;
+}
+
+body,
+#app {
+  @apply w-full h-full bg-slate-300;
 }
